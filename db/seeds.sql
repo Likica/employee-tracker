@@ -42,7 +42,7 @@ VALUES
 -- ('Man','Kind', 1, 7),
 -- ('Daisy', 'Pop', 1, 8),
 -- ('Dora', 'Exo', 1, 9),
--- ('Dandy', 'Line',8),
--- ('Robert', 'Cosmos',9),
--- ('Larry', 'Peach', 10),
+-- ('Dandy', 'Line',9, 7),
+-- ('Robert', 'Cosmos',9, 8),
+-- ('Larry', 'Peach', 10, 7),
 -- ('Manuel', 'Classy', 4, 8);
