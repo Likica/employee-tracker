@@ -36,13 +36,3 @@ VALUES
 ('Ivan', 'DeTall', 8,0),
 ('Missy', 'DeKind', 9,0),
 ('Coco', 'Puff', 10,0);
--- ('Bo', 'Smart', 3, 10),
--- ('Claire', 'First', 2, 7),
--- ('Chris', 'Port', 3, 7),
--- ('Man','Kind', 1, 7),
--- ('Daisy', 'Pop', 1, 8),
--- ('Dora', 'Exo', 1, 9),
--- ('Dandy', 'Line',9, 7),
--- ('Robert', 'Cosmos',9, 8),
--- ('Larry', 'Peach', 10, 7),
--- ('Manuel', 'Classy', 4, 8);
