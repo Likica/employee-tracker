@@ -23,9 +23,9 @@ const db = mysql.createConnection(
     console.log('Connected to the employeeTracker database.')
 );
 
-//query to return all the data from tables
-app.get('/api/employee', (req, res) => {
-    const sql = `SELECT * FROM employee`;
+//query to return all the data from tables for employees
+app.get('/api/employees', (req, res) => {
+    const sql = `SELECT * FROM employees`;
     db.query(sql, (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -42,7 +42,7 @@ app.get('/api/employee', (req, res) => {
 
 //GET a single employee
 app.get('/api/employee/:id', (req, res) => {
-    const sql = `SELECT * FROM employee WHERE id = ?`;
+    const sql = `SELECT * FROM employees WHERE id = ?`;
     const params = [req.params.id];
 
     db.query(sql, params, (err, row) => {
@@ -59,7 +59,7 @@ app.get('/api/employee/:id', (req, res) => {
 
 // DELETE an employee
 app.delete('/api/employee/:id', (req, res) => {
-    const sql = `DELETE FROM employee WHERE id = ?`;
+    const sql = `DELETE FROM employees WHERE id = ?`;
     const params = [req.params.id];
 
     db.query(sql, params, (err, result) => {
@@ -82,14 +82,13 @@ app.delete('/api/employee/:id', (req, res) => {
 
 
 //CREATE an employee 
-
 app.post('/api/employee', ({ body }, res) => {
     const errors = inputCheck(body, 'first_name', 'last_name', 'role_id');
     if (errors) {
         res.status(400).json({ error: errors });
         return;
     }
-    const sql = `INSERT INTO employee (first_name, last_name, role_id)
+    const sql = `INSERT INTO employees (first_name, last_name, role_id)
     VALUES (?,?,?)`;
     const params = [body.first_name, body.last_name, body.role_id];
 
@@ -105,7 +104,84 @@ app.post('/api/employee', ({ body }, res) => {
     });
 });
 
+// NEXT IS TO ADD API ROUTES FOR DEPARTMENT (ALL and single id dept, DELETE route) AND 
+//ROLES (ALL and single id, DELETE route)
+// // --- FROM HOMEWORK: PUT route for changing the party choice of candidate(s)
+// // Update candidate's party
+app.put('/api/candidate/:id', (req, res) => {
+    const sql = `UPDATE candidates SET party_id = ?
+    WHERE id = ?`;
+    const params = [req.body.party_id, req.params.id];
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({ error: err.message });
+            //check if a record was found
+        } else if (!result.affectedRows) {
+            res.json({
+                message: 'Candidate not found'
+            });
+        } else {
+            res.json({
+                message: 'success',
+                data: req.body,
+                changes: result.affectedRows
+            });
+        }
+    });
+});
 
+// // parties routes
+app.get('/api/parties', (req, res) => {
+    const sql = `SELECT * FROM parties`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: rows
+        });
+    });
+});
+
+// //api that includes id parameter for single party
+app.get('/api/party/:id', (req, res) => {
+    const sql = `SELECT * FROM parties WHERE id = ?`;
+    const params = [req.params.id];
+    db.query(sql, params, (err, row) => {
+        if (err) {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: row
+        });
+    });
+});
+
+// // delete route
+app.delete('/api/party/:id', (req, res) => {
+    const sql = `DELETE FROM parties WHERE id = ?`;
+    const params = [req.params.id];
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({ error: res.message });
+            //checks if anything was deleted
+        } else if (!result.affectedRows) {
+            res.json({
+                message: 'Party not found'
+            });
+        } else {
+            res.json({
+                message: 'deleted',
+                changes: result.affectedRows,
+                id: req.params.id
+            });
+        }
+    });
+});
 
 // // get test route 
 // app.get('/', (req, res) => {
@@ -113,12 +189,6 @@ app.post('/api/employee', ({ body }, res) => {
 //         message: 'Hello World!'
 //     });
 // });
-
-
-
-
-
-
 
 
 //Default response for any other user request (Not Found)
