@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Likica/employee-tracker#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "inquirer": "^8.1.0",
     "mysql2": "^2.2.5"
   },
   "devDependencies": {
