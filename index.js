@@ -14,7 +14,7 @@ const db = mysql.createConnection(
         password: 'BootSQL#2021',
         database: 'employeeTracker'
     },
-    console.log('Connected to the employeeTracker database.')
+    console.log('Connected to your employeeTracker database.')
 );
 
 db.connect(function (err) {
@@ -62,3 +62,5 @@ function start() {
             }
         })
 }
+
+// write functions for viewing
