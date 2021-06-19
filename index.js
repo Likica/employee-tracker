@@ -42,21 +42,26 @@ function start() {
             ]
         })
         .then(function (answer) {
-            if (answer.action === 'View all departments') {
-                viewDepartments();
+            if (answer.action === 'View all employees') {
+                viewEmployees();
             } else if (answer.action === 'View all roles') {
                 viewRoles();
-            } else if (answer.action === 'View all employees') {
-                viewEmployees();
-            } else if (answer.action === 'Add a department') {
-                addDepartment();
-            } else if (answer.action === 'Add a role') {
-                addRole();
+            } else if (answer.action === 'View all departments') {
+                viewDepartments();
+                //might be able to add an employee, need to figure out how to get ids 
             } else if (answer.action === 'Add an employee') {
                 addEmployee();
+                //might be able to add a role, need to figure out how to get ids 
+            } else if (answer.action === 'Add a role') {
+                addRole();
+                //might be able to add a dept, need to figure out how to get ids
+            } else if (answer.action === 'Add department') {
+                addDepartment();
+                //might be able to update a role....
             } else if (answer.action === 'Update employee role') {
                 updateRole();
             }
+            //if user does not want to do anything, can just exit
             else if (answer.action === 'Exit') {
                 db.end();
             }
@@ -64,3 +69,38 @@ function start() {
 }
 
 // write functions for viewing
+//view employees
+function viewEmployees() {
+    var query = "SELECT * FROM employees";
+    db.query(query, function (err, res) {
+        console.log(`EMPLOYEES:`)
+        res.forEach(employee => {
+            console.log(`ID: ${employee.id} | Name: ${employee.first_name} ${employee.last_name} | Role ID: ${employee.role_id} | Manager ID: ${employee.manager_id}`);
+        })
+        start();
+    });
+};
+//view roles
+function viewRoles() {
+    var query = "SELECT * FROM roles";
+    db.query(query, function (err, res) {
+        console.log(`ROLES:`)
+        res.forEach(role => {
+            console.log(`ID: ${role.id} | Title: ${role.title} | Salary: ${role.salary} | Department ID: ${role.department_id}`);
+        })
+        start();
+    });
+};
+//view departments
+function viewDepartments() {
+    var query = "SELECT * FROM department";
+    db.query(query, function (err, res) {
+        console.log(`DEPARTMENTS:`)
+        res.forEach(department => {
+            console.log(`ID: ${department.id} | Name: ${department.name}`)
+        })
+        start();
+    });
+};
+// need to add functions to add and update employee/role/dept
+
