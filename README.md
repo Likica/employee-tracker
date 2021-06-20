@@ -21,7 +21,7 @@
 
   ## Installation Instructions
   ##### [Back to Table of Contents](#Table-of-Contents)
-  1. Install node (`npm i --y`), install dependencies needed (inquirer, mysql2, fs, jest), then run the MySQL Shell to create DB, SEED it and run `npm start` to give your input and get outputs
+  1. Install node (`npm i --y`), install dependencies needed (inquirer, mysql2, fs, jest), then run the MySQL Shell to create DB, SEED it and run `npm start` in your Terminal/Bash to give your input and get outputs
 
   ## Usage Instructions
   ##### [Back to Table of Contents](#Table-of-Contents)
