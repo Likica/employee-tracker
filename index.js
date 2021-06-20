@@ -53,10 +53,10 @@ function start() {
             } else if (answer.action === 'Add a role') {
                 addRole();
                 //might be able to add a dept, need to figure out how to get ids
-            } else if (answer.action === 'Add department') {
+            } else if (answer.action === 'Add a department') {
                 addDepartment();
                 //might be able to update a role....
-            } else if (answer.action === 'Update employee role') {
+            } else if (answer.action === 'Update an employee role') {
                 updateRole();
             }
             //if user does not want to do anything, can just exit
@@ -133,14 +133,24 @@ function addEmployee() {
             }
             ])
             .then(function (answer) {
-                console.log(answer);
+                console.log('Is this it?', answer);
                 const role = answer.roleName;
                 db.query('SELECT * FROM roles', function (err, res) {
                     if (err) throw (err);
-                    let filteredRole = res.filter(function (res) {
-                        return res.title == role;
+                    // console.log(res);
+
+                    res.forEach(role => {
+                        // console.log(manager);
+                        if (role.title == answer.roleName) {
+                            answer.role_id = role.id
+                            // rolesArray.push(manager.first_name)
+                        }
                     })
-                    let roleId = filteredRole[0].id;
+                    console.log('Little Message', answer);
+                    // let filteredRole = res.filter(function (res) {
+                    //     return res.title == role;
+                    // })
+                    // let role = filteredRole[0].id;
                     db.query("SELECT * FROM employees", function (err, res) {
                         inquirer
                             .prompt([
@@ -149,77 +159,85 @@ function addEmployee() {
                                     type: "list",
                                     message: "Please enter name of the manager for the employee.",
                                     choices: function () {
+                                        //is there a way to filer only managers' Lnames or managers as role with lName next to it?
                                         managersArray = []
-                                        res.forEach(res => {
-                                            managersArray.push(
-                                                res.last_name)
+                                        res.forEach(manager => {
+                                            // console.log(manager);
+                                            if (manager.role_id == '6') {
+                                                managersArray.push(manager.first_name)
+                                            }
 
                                         })
                                         return managersArray;
                                     }
                                 }
-                            ]).then(function (managerAnswer) {
-                                const manager = managerAnswer.manager;
-                                db.query('SELECT * FROM employees', function (err, res) {
+                            ])
+                            .then(function (res) {
+                                // console.log('MANAGERresponse', res.manager);
+                                // console.log('answers', answer);
+                                //dbquery employees again
+                                db.query('SELECT * FROM employees', function (err, response) {
                                     if (err) throw (err);
-                                    let filteredManager = res.filter(function (res) {
-                                        return res.last_name == manager;
+                                    // console.log(res);
+                                    response.forEach(employee => {
+                                        // console.log('Is this NEW EMPLOYEE?', employee.id);
+                                        // console.log('employee.first_name', employee.first_name);
+                                        // console.log('response.mngr', response.manager);
+
+                                        if (employee.first_name == res.manager) {
+                                            // console.log('.here');
+                                            answer.manager_id = employee.id;
+                                            // rolesArray.push(manager.first_name)
+                                        }
+
                                     })
-                                    let managerId = filteredManager[0].id;
-                                    console.log(managerAnswer);
+
+                                    console.log('DOES IT WORK!', answer);
+
+                                    const manager = res.manager;
                                     let query = "INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
-                                    let values = [answer.firstName, answer.lastName, roleId, managerId]
-                                    console.log(values);
-                                    db.query(query, values,
-                                        function (err, res, fields) {
-                                            console.log(`New employee added: ${(values[0]).toUpperCase()}.`)
+                                    let values = answer;
+                                    console.log('is it here?', values);
+                                    db.query(query, [values.firstName, values.lastName, values.role_id, values.manager_id],
+
+                                        function (err, res) {
+                                            if (err) throw (err);
+                                            console.log(`New employee added: ${[values.firstName, values.lastName, values.role_id, values.manager_id]}.`)
                                         })
                                     viewEmployees();
+
                                 })
+
                             })
                     })
                 })
             })
     })
 }
-//add dept - doesn't work...
+
+//add dept - doesn't work... needs to be asynchronous?
 function addDepartment() {
     db.query('SELECT * FROM department', function (err, res) {
         if (err) throw (err);
         inquirer
             .prompt([{
-                name: "department_id",
+                name: "name",
                 type: "input",
-                message: "Please enter ID number for this department",
-            },
-            {
-                name: "department",
-                type: "input",
-                message: "Please enter the name of a new department.",
+                message: "Please enter name of New Department.",
 
-                choices: function () {
-                    var choicesArray = [];
-                    res.forEach(res => {
-                        choicesArray.push(
-                            res.name
-                        );
-                    })
-                    return choicesArray;
-                }
             }
             ])
             .then(function (answer) {
                 const department = answer.departmentName;
-                db.query('SELECT * FROM department', function (err, res) {
+                db.query('SELECT * FROM DEPARTMENT', function (err, res) {
 
                     if (err) throw (err);
                     let filteredDept = res.filter(function (res) {
                         return res.name == department;
                     }
                     )
-                    let id = filteredDept[0].id;
-                    let query = "INSERT INTO roles (id, name) VALUES (?, ?)";
-                    let values = [answer.department_id, answer.department]
+                    let query = "INSERT INTO department (name) VALUES (?)";
+                    let values = [answer.name]
                     console.log(values);
                     db.query(query, values,
                         function (err, res, fields) {
@@ -231,7 +249,7 @@ function addDepartment() {
     })
 }
 
-//add role- doesn't work...
+//add role- doesn't work... Prompts for all info but doesn't save... needs to be asynchronous?
 function addRole() {
     db.query('SELECT * FROM department', function (err, res) {
         if (err) throw (err);
@@ -283,7 +301,7 @@ function addRole() {
             })
     })
 }
-//updateRole - doesn't work...
+//updateRole - doesn't work... needs to be asynchronous?
 function updateRole() {
     db.query('SELECT * FROM employees', function (err, result) {
         if (err) throw (err);

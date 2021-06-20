@@ -15,24 +15,20 @@ INSERT INTO roles (id, title, salary, department_id)
 VALUES
 (1, 'Admin', 42000, 1),
 (2, 'Worker', 35000, 7),
-(3, 'Worker', 35000, 8),
-(4, 'Team Lead', 35000, 4),
-(5, 'Supervisor', 55000, 10),
-(6, 'Maintenance Chief', 65000, 9),
-(7, 'Manager', 85000, 3),
-(8, 'Manager', 75000, 2),
-(9, 'Manager', 75000, 5),
-(10, 'Manager', 75000, 6);
+(3, 'Team Lead', 35000, 4),
+(4, 'Supervisor', 55000, 10),
+(5, 'Maintenance Chief', 65000, 9),
+(6, 'Manager', 85000, 3);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
-('Rob', 'Clue', 1, 7),
-('Mani', 'First', 2, 7),
-('Toto', 'Beacon', 3, 8),
-('Super','Woman', 4, 8),
-('Super', 'Man', 5, 9),
-('Dora', 'Exo', 6, 9),
-('Philip', 'Brow', 7,0),
-('Ivan', 'DeTall', 8,0),
-('Missy', 'DeKind', 9,0),
-('Coco', 'Puff', 10,0);
+('Rob', 'Clue', 1, 6),
+('Mani', 'First', 2, 6),
+('Toto', 'Beacon', 3, 6),
+('Super','Woman', 4, 6),
+('Super', 'Man', 5, 6),
+('Dora', 'Exo', 6, 0),
+('Philip', 'Brow', 1,6),
+('Ivan', 'DeTall', 3,6),
+('Missy', 'DeKind', 6,0),
+('Coco', 'Puff', 5,6);
