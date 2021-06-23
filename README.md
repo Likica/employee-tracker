@@ -1,7 +1,7 @@
 # employee-tracker
   ### By Likica * [Email me](mailto:fahrija_wyroski@live.com) * 
 
-  * [Walk-Through Video Link-InProgress](https:/github.com/)
+  * [Walk-Through Video Link](https://drive.google.com/file/d/1r0kFLJw9-rBXJqjbkkAIW3vfz40-BI1m/view)
  
   ## Table of contents
   * [Description](#Description)

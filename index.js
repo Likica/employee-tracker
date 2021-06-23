@@ -133,7 +133,7 @@ function addEmployee() {
             }
             ])
             .then(function (answer) {
-                console.log('Is this it?', answer);
+                console.log(answer);
                 const role = answer.roleName;
                 db.query('SELECT * FROM roles', function (err, res) {
                     if (err) throw (err);
@@ -192,12 +192,12 @@ function addEmployee() {
 
                                     })
 
-                                    console.log('DOES IT WORK!', answer);
+                                    console.log(answer);
 
                                     const manager = res.manager;
                                     let query = "INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
                                     let values = answer;
-                                    console.log('is it here?', values);
+                                    console.log(values);
                                     db.query(query, [values.firstName, values.lastName, values.role_id, values.manager_id],
 
                                         function (err, res) {

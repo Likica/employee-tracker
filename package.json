@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Likica/employee-tracker#readme",
   "dependencies": {
-    "inquirer": "^8.1.0",
+    "inquirer": "^8.1.1",
     "mysql2": "^2.2.5"
   },
   "devDependencies": {
