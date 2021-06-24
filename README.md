@@ -3,6 +3,20 @@
 
   * [Walk-Through Video Link](https://drive.google.com/file/d/1r0kFLJw9-rBXJqjbkkAIW3vfz40-BI1m/view)
  
+<p align="center">
+    <img src="https://img.shields.io/github/repo-size/likica/employee-tracker" />
+    <img src="https://img.shields.io/github/issues/likica/employee-tracker" />
+    <img src="https://img.shields.io/github/last-commit/likica/employee-tracker" >
+    </a>
+</p>
+<p align="center">
+<img src="https://img.shields.io/badge/-node.js-green" />
+    <img src="https://img.shields.io/badge/Javascript-blue" />
+    <img src="https://img.shields.io/badge/consoletable-yellow" />
+    <img src="https://img.shields.io/badge/-inquirer-red" >
+    <img src="https://img.shields.io/badge/-mysql2-darkred" />
+</p>
+
   ## Table of contents
   * [Description](#Description)
   * [Installation Instructions](#installation-Instructions)
