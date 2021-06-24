@@ -21,15 +21,59 @@
 
   ## Installation Instructions
   ##### [Back to Table of Contents](#Table-of-Contents)
-  1. Install node (`npm i --y`), install dependencies needed (inquirer, mysql2, fs, jest), then run the MySQL Shell to create DB, SEED it and run `npm start` in your Terminal/Bash to give your input and get outputs
+  1. Install node (`npm init` and `npm install --y`), install dependencies needed (inquirer, mysql2,jest), then run the MySQL Shell commands to create DB, SEED it and run `npm start` or `node index` in your Terminal/Bash
 
   ## Usage Instructions
   ##### [Back to Table of Contents](#Table-of-Contents)
-  In progress
+  - Once you have installed `npm dependencies` start the app by running `npm start` or `node index` (either one will work)
+  - Once started, app will prompt you with choices list (view all employees, departments or roles, as well as choices to add new employee, department or role and update the role of an employee)
+
+  <p align="center" width="100%">
+    <img src="assets/images/NAVChoices.png" width="70%"/>
+  </p>
+  - View All Employees:
+  <p align="center" width="100%">
+    <img src="assets/images/ViewEmployees.png" width="70%"/>
+  </p>
+- View All Roles:
+  <p align="center" width="100%">
+    <img src="assets/images/ViewRoles.png" width="70%"/>
+  </p>
+- View All Departments:
+  <p align="center" width="100%">
+    <img src="assets/images/ViewDepartments.png" width="70%"/>
+  </p>
+- Add an Employee:
+
+* Step 1- enter first and last name of the new employee
+  <p align="center" width="100%">
+    <img src="assets/images/AddEmployee.png" width="70%"/>
+  </p>
+* Step 2- choose the role and manager for this employee
+    <p align="center" width="100%">
+    <img src="assets/images/AddEmployee-1.png" width="70%"/>
+  </p>
+* New Employee Added (employee with ID#12):
+    <p align="center" width="100%">
+    <img src="assets/images/AddEmployee2.png" width="70%"/>
+  </p>
+- Add a Role - Once you chose this option, app will prompt for a New Role name, salary and department this role belongs to. Once you give all required info, your new role will be added to the list of roles:
+    <p align="center" width="100%">
+    <img src="assets/images/AddRole.png" width="70%"/>
+  </p>
+- Add a Department - Once you chose this option, app will prompt for a New Department name. Once you give all required info, your new department will be added to the list of departments:
+    <p align="center" width="100%">
+    <img src="assets/images/AddDepartment.png" width="70%"/>
+  </p>
+- Update an Employee Role - Once you chose this option, app will prompt you to choose the last name of the employee changing role and give you list of role options to choose from. Once you give all required info, your employee role will be updated:
+    <p align="center" width="100%">
+    <img src="assets/images/UpdateRole.png" width="70%"/>
+  </p>
+
 
   ## Contributing
   ##### [Back to Table of Contents](#Table-of-Contents)
-  
+  - All are welcome to contribute within limits of below License
 
   ## Tests
   #### [Back to Table of Contents](#Table-of-Contents)

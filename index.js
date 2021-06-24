@@ -310,7 +310,7 @@ function updateRole() {
                 {
                     name: "employeeName",
                     type: "list",
-                    message: "Please enter Fname and Lname of the employee changing the role",
+                    message: "Please choose the last name of the employee you want to update the role for",
                     choices: function () {
                         employeeArray = [];
                         result.forEach(result => {
